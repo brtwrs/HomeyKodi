@@ -8,8 +8,9 @@
     "en": "Control your Kodi device with Homey!",    
     "nl": "Bestuur je Kodi apparaat met Homey!"
   },
-  "version": "1.9.0",
-  "compatibility": ">=0.9 || 1.x",
+  "version": "2.0.0",
+  "sdk": 2,
+  "compatibility": "1.x >=1.5.0",
   "category": [
     "music",
     "video"
@@ -19,137 +20,6 @@
     "email": "marvinschenkel@gmail.com",
     "website": "https://linkedin.com/in/marvinschenkel"
   },
-  "speech":[
-    {
-      "id": "kodi_play_movie",
-      "importance": 0.7,
-      "triggers" : {
-        "en" : ["play movie"],
-        "nl" : ["speel film", "speel de film", "start film", "start de film"]
-      }
-    },
-    {
-      "id": "kodi_play_tvshow",
-      "importance": 1,
-      "triggers" : {
-        "en" : ["play tv show"],
-        "nl" : ["speel serie", "speel de serie", "start serie", "start de serie"]
-      }
-    },
-    {
-      "id": "kodi_play_music",
-      "importance": 0.7,
-      "triggers" : {
-        "en" : ["play music"],
-        "nl": ["speel muziek"]
-      }
-    },
-    {
-      "id": "kodi_play_pause",
-      "importance": 0.7,
-      "triggers" : {
-        "en" : ["pause", "resume"],
-        "nl" : ["pauze", "hervat"]
-      }
-    },
-    {
-      "id": "kodi_stop",
-      "importance": 0.7,
-      "triggers" : {
-        "en" : ["stop", "exit", "quit"],
-        "nl": ["stop"]
-      }
-    },
-    {
-      "id": "kodi_next",
-      "importance": 0.7,
-      "triggers": {
-        "en" : ["next track"],
-        "nl": ["volgende"]
-      }
-    },
-    {
-      "id": "kodi_previous",
-      "importance": 0.7,
-      "triggers": {
-        "en" : ["previous track"],
-        "nl": ["vorige"]
-      }
-    },
-    {
-       "id": "kodi_play_latest_episode",
-       "importance": 1,
-       "triggers": {
-         "en": ["play latest episode of", "play the latest episode of", "play latest episode", "play the latest episode"],
-         "nl": ["speel de laatste aflevering", "speel de laatste aflevering van", "speel laatste aflevering", "start de laatste aflevering", "start de laatste aflevering van", "start laatste aflevering"]
-       }
-    },
-    {
-      "id": "kodi_watch_something",
-      "importance": 1,
-      "triggers" : {
-        "en" : ["watch something"],
-        "nl": ["iets kijken"]
-      }
-    },
-    {
-      "id": "kodi_watch_movie",
-      "importance": 1,
-      "triggers" : {
-        "en" : ["watch a movie", "watch movie"],
-        "nl": ["film kijken"]
-      }
-    },
-    {
-      "id": "kodi_hibernate",
-      "importance": 0.5,
-      "triggers" : {
-        "en" : ["hibernate kodi"],
-        "nl": ["slaap kodi"]
-      }
-    },
-    {
-      "id": "kodi_shutdown",
-      "importance": 0.5,
-      "triggers" : {
-        "en" : ["shutdown kodi"],
-        "nl": ["kodi afsluiten"]
-      }
-    },
-    {
-      "id": "kodi_reboot",
-      "importance": 0.5,
-      "triggers" : {
-        "en" : ["reboot kodi"],
-        "nl": ["kodi herstarten"]
-      }
-    },
-    {
-      "id": "kodi_start_addon",
-      "importance": 0.8,
-      "triggers" : {
-        "en" : ["start addon", "start add on", "start program"],
-        "nl": ["start addon", "start add on", "start programma"]
-      }
-    },
-    {
-      "id": "kodi_new_movies",
-      "importance": 0.8,
-      "triggers" : {
-        "en" : ["new movie", "new movies"],
-        "nl": ["nieuwe film", "nieuwe films"]
-      }
-    },
-    {
-      "id": "kodi_new_episodes",
-      "importance": 0.8,
-      "triggers" : {
-        "en" : ["new episode", "new episodes", "new tv show", "new tv shows"],
-        "nl": ["nieuwe aflevering", "nieuwe afleveringen"]
-      }
-    }
-    
-  ],
   "drivers": [
     {
       "id": "kodi",
@@ -165,12 +35,15 @@
       "capabilities": [ ],
       "pair": [
         {
-          "id": "configure_kodi"
-        }
-        ,
+            "id": "list_devices",
+            "template": "list_devices", 
+            "navigation": {
+                "next": "add_devices" 
+            }
+        },
         {
-          "id": "add_kodis",
-          "template": "add_devices"
+            "id": "add_devices",
+            "template": "add_devices"
         }
       ],
       "settings": [
