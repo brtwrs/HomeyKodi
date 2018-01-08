@@ -1,6 +1,8 @@
 ## Kodi support for Homey
 Adds Kodi support to your Homey!
 
+Automatic pairing is not supported on Kodi on Android. This is an issue with zeroconf on Kodi on Android. Support for Kodi on Android will be added in the future.
+
 ### Flow support
 *Triggers*
 * On movie start (doesn't work with every version of Kodi)
