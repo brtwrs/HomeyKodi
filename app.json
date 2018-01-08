@@ -30,8 +30,7 @@
         "large": "./drivers/kodi/assets/images/large.png",
         "small": "./drivers/kodi/assets/images/small.png"
       },
-      "class": "other",
-      
+      "class": "other",      
       "capabilities": [ ],
       "pair": [
         {
@@ -461,8 +460,8 @@
       {
         "id": "play_latest_episode_kodi",
         "title": {
-          "en" : "Play the latest episode of a series on Kodi",
-          "nl":"Speel de laatste aflevering van een serie af op Kodi"
+          "en" : "Play the latest unwatched episode of a series on Kodi",
+          "nl":"Speel de laatste niet afgespeelde aflevering van een serie af op Kodi"
         },
         "fluidArgs": true,
         "args":[
@@ -477,6 +476,29 @@
             "placeholder" : {
               "en" : "Type a series title that's in your library",
               "nl": "Voer een serie uit je bibliotheek in"
+            }
+          }
+        ]
+      },
+      {
+        "id": "start_addon_kodi",
+        "title": {
+          "en" : "Start an addon Kodi",
+          "nl":"Start een addon op Kodi"
+        },
+        "fluidArgs": true,
+        "args":[
+          {
+            "name": "kodi",
+            "type": "device",
+            "filter": "driver_uri=homey:app:nl.marvinschenkel.kodi&driver_id=kodi"
+          },
+          {
+            "name": "addon_name",
+            "type": "text",
+            "placeholder" : {
+              "en" : "Type an addon name that's in your library",
+              "nl": "Voer een naam van een addon uit je bibliotheek in"
             }
           }
         ]
@@ -501,6 +523,36 @@
               "en" : "Type an artist in your library",
               "nl": "Voer een artiest uit je bibliotheek in"
             }
+          }
+        ]
+      },
+      {
+        "id": "next_track",
+        "title": {
+          "en" : "Next",
+          "nl":"Volgende"
+        },
+        "fluidArgs": true,
+        "args":[
+          {
+            "name": "kodi",
+            "type": "device",
+            "filter": "driver_uri=homey:app:nl.marvinschenkel.kodi&driver_id=kodi"
+          }
+        ]
+      },
+      {
+        "id": "previous_track",
+        "title": {
+          "en" : "Previous",
+          "nl":"Vorige"
+        },
+        "fluidArgs": true,
+        "args":[
+          {
+            "name": "kodi",
+            "type": "device",
+            "filter": "driver_uri=homey:app:nl.marvinschenkel.kodi&driver_id=kodi"
           }
         ]
       },
