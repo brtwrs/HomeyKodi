@@ -433,6 +433,60 @@
         ]
       }
     ],
+    "conditions": [
+      {
+        "id": "is_playing",
+        "title": {
+          "en": "Kodi is playing...",
+          "nl": "Kodi speelt af..."
+        },
+        "args" : [
+          {
+            "name": "kodi",
+            "type": "device",
+            "filter": "driver_uri=homey:app:nl.marvinschenkel.kodi&driver_id=kodi",
+            "placeholder": { 
+              "en": "Which Kodi device", 
+              "nl": "Welk Kodi apparaat" 
+             }
+          },          
+          {
+            "name": "playing_item",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "movie",
+                "label": {
+                  "en": "a movie",
+                  "nl": "een film"
+                }
+              },
+              {
+                "id": "episode",
+                "label": {
+                  "en": "an episode",
+                  "nl": "een aflevering"
+                }
+              },
+              {
+                "id": "music",
+                "label": {
+                  "en": "music",
+                  "nl": "muziek"
+                }
+              },
+              {
+                "id": "anything",
+                "label": {
+                  "en": "anything",
+                  "nl": "maakt niet uit"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "actions":[
       {
         "id": "play_movie_kodi",

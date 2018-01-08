@@ -5,7 +5,7 @@ const bonjour = require('bonjour')()
 const net = require('net')
 
 class KodiDriver extends Homey.Driver {
-  
+
   onInit() {
     // Register flow triggers
     this._flowTriggerKodiMovieStart = new Homey.FlowCardTriggerDevice('kodi_movie_start')
@@ -49,6 +49,14 @@ class KodiDriver extends Homey.Driver {
 
     this._flowTriggerKodiWake = new Homey.FlowCardTriggerDevice('kodi_wake')
       .register()
+
+    // Register flow conditions
+    new Homey.FlowCardCondition('is_playing')
+      .register()
+      .registerRunListener( (args, state) => {
+        let device = args.kodi
+        return Promise.resolve(device.isPlaying(args.playing_item))
+      })
 
     // Register flow actions
     new Homey.FlowCardAction('play_movie_kodi')

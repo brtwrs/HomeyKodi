@@ -182,6 +182,24 @@ class KodiDevice extends Homey.Device {
         return this._player.stop()
     }
 
+    isPlaying (playingFilter) {
+        this.log('isPlaying(', playingFilter, ')')
+        this.log('playerstate', this._player.getState())
+        switch (playingFilter) {
+            case 'movie':
+                return this._player.getState() === 'playing_movie'
+
+            case 'episode':
+                return this._player.getState() === 'playing_episode'
+
+            case 'music':
+                return this._player.getState() === 'playing_music'
+
+            case 'anything':
+                return (this._player.getState() !== 'paused' && this._player.getState() !== 'stopped')
+        }
+    }
+
     /************************************
         SYSTEM
     ************************************/
