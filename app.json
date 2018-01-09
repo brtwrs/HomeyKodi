@@ -30,8 +30,8 @@
         "large": "./drivers/kodi/assets/images/large.png",
         "small": "./drivers/kodi/assets/images/small.png"
       },
-      "class": "other",      
-      "capabilities": [ ],
+      "class": "",      
+      "capabilities": [  ],
       "pair": [
         {
             "id": "list_devices",

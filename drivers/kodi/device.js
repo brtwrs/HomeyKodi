@@ -16,7 +16,10 @@ class KodiDevice extends Homey.Device {
         let host = this.getSetting('host')
         let tcpPort = this.getSetting('tcpport')
         
-        this._connectKodi(host, tcpPort)  
+        this._connectKodi(host, tcpPort)
+        
+        // Register capabilities
+        this.registerCapabilityListener('volume_set', this._onCapabilityVolumeSet.bind(this))
     }
 
     onAdded() {
@@ -310,6 +313,13 @@ class KodiDevice extends Homey.Device {
         let driver = this.getDriver()
         driver._flowTriggerKodiWake
             .trigger(this, null, null)
+    }
+
+    /************************************
+        CAPABILITIES
+    ************************************/
+    _onCapabilityVolumeSet (value, opts) {
+        this.log('_onCapabilityVolumeSet(', value, ',', opts)
     }
 }
 
