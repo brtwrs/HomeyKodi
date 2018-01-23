@@ -897,6 +897,9 @@ function startListeningForEvents (device) {
   device.notification('System.OnSleep', function (result) { onKodiGenericEvent(result, device, 'kodi_hibernate') })
   device.notification('System.OnRestart', function (result) { onKodiGenericEvent(result, device, 'kodi_reboot') })
   device.notification('System.OnWake', function (result) { onKodiGenericEvent(result, device, 'kodi_wake') })
+  device.notification('GUI.OnScreensaverActivated', function (result) { onKodiGenericEvent(result, device, 'kodi_ss_on') })
+  device.notification('GUI.OnScreensaverDeactivated', function (result) { onKodiGenericEvent(result, device, 'kodi_ss_off') })
+
   // Catch error when Kodi suddenly goes offline to prevent the app from crashing
   device.on('error', function (error) {
     console.log('Kodi connection error: ', error)
@@ -1097,7 +1100,7 @@ function onKodiPlay (result, device) {
                 }).catch(function (err) { console.log(err) })
             }
           })
-        } 
+        }
       }
     })
 }
