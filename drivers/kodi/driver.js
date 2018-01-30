@@ -50,6 +50,12 @@ class KodiDriver extends Homey.Driver {
     this._flowTriggerKodiWake = new Homey.FlowCardTriggerDevice('kodi_wake')
       .register()
 
+    this._flowTriggerKodiScreensaverOn = new Homey.FlowCardTriggerDevice('kodi_ss_on')
+      .register()
+
+    this._flowTriggerKodiScreensaverOff = new Homey.FlowCardTriggerDevice('kodi_ss_off')
+      .register()
+
     // Register flow conditions
     new Homey.FlowCardCondition('is_playing')
       .register()
@@ -71,15 +77,15 @@ class KodiDriver extends Homey.Driver {
       .registerRunListener( (args, state) => {
         let device = args.kodi
         return device.playLatestUnwatchedEpisode(args.series_title)
-      })    
+      })
 
     new Homey.FlowCardAction('start_addon_kodi')
       .register()
       .registerRunListener( (args, state) => {
         let device = args.kodi
         return device.startAddon(args.addon_name)
-      })    
-      
+      })
+
     new Homey.FlowCardAction('play_music_by_artist')
       .register()
       .registerRunListener( (args, state) => {
@@ -121,7 +127,7 @@ class KodiDriver extends Homey.Driver {
         let device = args.kodi
         return device.stop()
       })
-    
+
     new Homey.FlowCardAction('hibernate_kodi')
       .register()
       .registerRunListener( (args, state) => {
@@ -181,7 +187,7 @@ class KodiDriver extends Homey.Driver {
 
   // Pairing functionality
   onPairListDevices (data, callback) {
-    this.log('onPairListDevices')      
+    this.log('onPairListDevices')
 
     let devices = []
 
@@ -199,11 +205,11 @@ class KodiDriver extends Homey.Driver {
                 host: kodiDevice.addresses[0],
                 tcpport: kodiDevice.port
               }
-            }        
+            }
           )
         })
-    })    
-    
+    })
+
     // Call the frontend, use timeout to make sure devices are filled because bonjour searches asynchronously
     setTimeout( () => {
         callback(null, devices)
@@ -212,4 +218,3 @@ class KodiDriver extends Homey.Driver {
 }
 
 module.exports = KodiDriver
-

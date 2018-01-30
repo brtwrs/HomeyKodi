@@ -15,9 +15,9 @@ class KodiDevice extends Homey.Device {
         this.log('init(', this.getData().id, ')')
         let host = this.getSetting('host')
         let tcpPort = this.getSetting('tcpport')
-        
+
         this._connectKodi(host, tcpPort)
-        
+
         // Register capabilities
         this.registerCapabilityListener('volume_set', this._onCapabilityVolumeSet.bind(this))
     }
@@ -42,30 +42,30 @@ class KodiDevice extends Homey.Device {
         this.log('_connectKodi (', ipAddress, ',', port, ')')
         let device = this
         KodiWs(ipAddress, port)
-            .then ((kodi) => {          
-                device.log('Connected to ', ipAddress)                          
-                
+            .then ((kodi) => {
+                device.log('Connected to ', ipAddress)
+
                 // Delete the timer after succesful connection
-                if(device.reconnectTimer) {                    
+                if(device.reconnectTimer) {
                     clearInterval(device.reconnectTimer)
                     // Trigger flow
                     let driver = device.getDriver()
                     driver._flowTriggerKodiReconnects
                         .trigger(device, null, null)
                 }
-                
+
                 // Initialise connection polling
-                let fnReconnect = function(error) {                    
+                let fnReconnect = function(error) {
                     // Check if we are already polling
                     if(!device.reconnectTimer) {
                         device.log('Connection lost to ', ipAddress)
                         device.error(error)
                         device.setUnavailable()
-                        device.reconnectTimer = 
+                        device.reconnectTimer =
                             setTimeout( (ipAddress, port) => {
                                 device._connectKodi(ipAddress, port)
                             }, RECONNECT_INTERVAL, ipAddress, port) // Start polling
-                    }                    
+                    }
                 }
 
                 // Register event listeners
@@ -91,16 +91,18 @@ class KodiDevice extends Homey.Device {
                 device._system.on('hibernate', () => { device._onHibernate() })
                 device._system.on('reboot', () => { device._onReboot() })
                 device._system.on('wake', () => { device._onWake() })
+                device._system.on('screensaverOn', () => { device._onSreensaverOn() })
+                device._system.on('screensaverOff', () => { device._onSreensaverOff() })
 
                 device.setAvailable() // Make available to Homey
             })
             .catch((err) => {
                 device.error(err)
                 device.setUnavailable(err)
-                device.reconnectTimer = 
+                device.reconnectTimer =
                     setTimeout( (ipAddress, port) => {
                         device._connectKodi(ipAddress, port)
-                    }, RECONNECT_INTERVAL, ipAddress, port) // Start polling                
+                    }, RECONNECT_INTERVAL, ipAddress, port) // Start polling
             })
     }
 
@@ -111,9 +113,9 @@ class KodiDevice extends Homey.Device {
         this.log('playMovie(', movieTitle, ')')
         return this._library.searchMovie(movieTitle)
             .then ( (movie) => {
-                return this._player.playMovie(movie)     
+                return this._player.playMovie(movie)
             })
-    }    
+    }
 
     /************************************
         EPISODES
@@ -174,7 +176,7 @@ class KodiDevice extends Homey.Device {
         this.log('setVolume(', volume, ')')
         return this._player.setVolume(volume)
     }
-    
+
     pauseResume () {
         this.log('playPause()')
         return this._player.pauseResume()
@@ -242,14 +244,14 @@ class KodiDevice extends Homey.Device {
         this.log('_onEpisodeStop(', episode, ')')
         let driver = this.getDriver()
         driver._flowTriggerKodiEpisodeStop
-            .trigger(this, episode.getParamFlow(), null)    
+            .trigger(this, episode.getParamFlow(), null)
     }
 
     _onMovieStop (movie) {
         this.log('_onMovieStop(', movie, ')')
         let driver = this.getDriver()
         driver._flowTriggerKodiMovieStop
-            .trigger(this, movie.getParamFlow(), null)        
+            .trigger(this, movie.getParamFlow(), null)
     }
 
     _onPlay () {
@@ -312,6 +314,20 @@ class KodiDevice extends Homey.Device {
         this.log('_onWake()')
         let driver = this.getDriver()
         driver._flowTriggerKodiWake
+            .trigger(this, null, null)
+    }
+
+    _onSreensaverOn () {
+        this.log('_onSreensaverOn()')
+        let driver = this.getDriver()
+        driver._flowTriggerKodiScreensaverOn
+            .trigger(this, null, null)
+    }
+
+    _onSreensaverOff () {
+        this.log('_onSreensaverOff()')
+        let driver = this.getDriver()
+        driver._flowTriggerKodiScreensaverOff
             .trigger(this, null, null)
     }
 

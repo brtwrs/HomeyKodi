@@ -5,7 +5,7 @@
     "nl": "Kodi"
   },
   "description": {
-    "en": "Control your Kodi device with Homey!",    
+    "en": "Control your Kodi device with Homey!",
     "nl": "Bestuur je Kodi apparaat met Homey!"
   },
   "version": "2.0.0",
@@ -30,14 +30,14 @@
         "large": "./drivers/kodi/assets/images/large.png",
         "small": "./drivers/kodi/assets/images/small.png"
       },
-      "class": "",      
+      "class": "",
       "capabilities": [  ],
       "pair": [
         {
             "id": "list_devices",
-            "template": "list_devices", 
+            "template": "list_devices",
             "navigation": {
-                "next": "add_devices" 
+                "next": "add_devices"
             }
         },
         {
@@ -85,7 +85,7 @@
       {
         "id":"kodi_movie_start",
         "title": {
-          "en":"A movie has started",          
+          "en":"A movie has started",
           "nl":"Een film begint"
         },
         "args": [
@@ -93,9 +93,9 @@
             "name": "kodi",
             "type": "device",
             "filter": "driver_uri=homey:app:nl.marvinschenkel.kodi&driver_id=kodi",
-            "placeholder": { 
-              "en": "Which Kodi device", 
-              "nl": "Welk Kodi apparaat" 
+            "placeholder": {
+              "en": "Which Kodi device",
+              "nl": "Welk Kodi apparaat"
              }
           }
         ],
@@ -116,7 +116,7 @@
       {
         "id":"kodi_movie_stop",
         "title": {
-          "en":"A movie has stopped",          
+          "en":"A movie has stopped",
           "nl":"Een film stopt"
         },
         "args": [
@@ -124,9 +124,9 @@
             "name": "kodi",
             "type": "device",
             "filter": "driver_uri=homey:app:nl.marvinschenkel.kodi&driver_id=kodi",
-            "placeholder": { 
-              "en": "Which Kodi device", 
-              "nl": "Welk Kodi apparaat" 
+            "placeholder": {
+              "en": "Which Kodi device",
+              "nl": "Welk Kodi apparaat"
              }
           }
         ],
@@ -147,7 +147,7 @@
       {
         "id":"kodi_song_start",
         "title": {
-          "en":"A song starts playing",          
+          "en":"A song starts playing",
           "nl":"Er wordt muziek afgespeeld"
         },
         "args": [
@@ -155,9 +155,9 @@
             "name": "kodi",
             "type": "device",
             "filter": "driver_uri=homey:app:nl.marvinschenkel.kodi&driver_id=kodi",
-            "placeholder": { 
-              "en": "Which Kodi device", 
-              "nl": "Welk Kodi apparaat" 
+            "placeholder": {
+              "en": "Which Kodi device",
+              "nl": "Welk Kodi apparaat"
              }
           }
         ],
@@ -363,7 +363,7 @@
         ]
       },
       {
-        "id":"kodi_stop",        
+        "id":"kodi_stop",
         "title": {
           "en":"Kodi has been stopped",
           "nl": "Kodi is gestopt"
@@ -431,6 +431,34 @@
             "filter": "driver_uri=homey:app:nl.marvinschenkel.kodi&driver_id=kodi"
           }
         ]
+      },
+      {
+        "id":"kodi_ss_on",
+        "title": {
+          "en":"Kodi screensaver on",
+          "nl": "Kodi screensaver aan"
+        },
+        "args": [
+          {
+            "name": "kodi",
+            "type": "device",
+            "filter": "driver_uri=homey:app:nl.marvinschenkel.kodi&driver_id=kodi"
+          }
+        ]
+      },
+      {
+        "id":"kodi_ss_off",
+        "title": {
+          "en":"Kodi screensaver off",
+          "nl": "Kodi screensaver uit"
+        },
+        "args": [
+          {
+            "name": "kodi",
+            "type": "device",
+            "filter": "driver_uri=homey:app:nl.marvinschenkel.kodi&driver_id=kodi"
+          }
+        ]
       }
     ],
     "conditions": [
@@ -445,11 +473,11 @@
             "name": "kodi",
             "type": "device",
             "filter": "driver_uri=homey:app:nl.marvinschenkel.kodi&driver_id=kodi",
-            "placeholder": { 
-              "en": "Which Kodi device", 
-              "nl": "Welk Kodi apparaat" 
+            "placeholder": {
+              "en": "Which Kodi device",
+              "nl": "Welk Kodi apparaat"
              }
-          },          
+          },
           {
             "name": "playing_item",
             "type": "dropdown",
@@ -628,7 +656,7 @@
             "type": "range",
             "min": 1,
             "max": 100,
-            "step": 1, 
+            "step": 1,
             "label": "%",
             "labelMultiplier": 1,
             "labelDecimals": 0
